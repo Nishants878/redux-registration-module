@@ -1,0 +1,98 @@
+.MainContainer{
+   
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 3%;
+    padding: 1rem;
+}
+.LeftContainer{
+    width: 65%;
+}
+.Title{
+    font-family: 'Open Sans', sans-serif;
+    padding-left: 10rem;
+    font-weight: 600;
+    font-size: 3rem;
+    
+}
+.SecondaryFlex{
+    display: flex;
+}
+.SecondaryTitle{
+    padding-top: 4rem;
+padding-left: 10rem;
+    font-size: 1.5rem;
+   width: 55%;
+    font-family: 'Open Sans', sans-serif;
+    font-weight:500;
+    line-height: 2.4rem;
+}
+.ImageContainer>img{
+
+}
+.SignIn{
+    text-decoration: none;
+    color: #4460F1;
+    font-weight: 700;
+}
+.RightContainer{
+    width: 45%;
+}
+form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.InputWrapper{
+    width: 100%;
+    margin-top: 1.2rem;
+    margin-left: 2rem;
+}
+.Input {
+    width: 60%;
+    height: 60px;
+
+    outline: none;
+  
+    background: #E9EFF6;
+ 
+    padding-left: 1rem;
+    border: 1px solid #F3F5F5;
+    box-sizing: border-box;
+    margin: 0;
+    border-radius: 10px;
+  }
+  .EyeIcons {
+    position: relative;
+    top: 0%;
+    right: 10%;
+    cursor: pointer;
+    color: #b4b4b4;
+  }
+  .Btn{
+    width: 60%;
+    height: 60px;
+
+    outline: none;
+  
+    background: #4460F1;
+   font-size: 1.2rem;
+    padding-left: 1rem;
+    border: 1px solid #F3F5F5;
+    box-sizing: border-box;
+    margin: 0;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+  }
+  .BtnContainer{
+    width: 100%;
+    margin-top: 2.2rem;
+    margin-left: 2rem;
+  }
+ img{
+     width: 500px;
+ }

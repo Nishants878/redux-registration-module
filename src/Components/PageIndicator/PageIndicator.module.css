@@ -1,0 +1,24 @@
+.Title{
+    font-family: 'Open Sans', sans-serif;
+    padding-left: 10rem;
+    font-weight: 600;
+    font-size: 3rem;
+    
+}
+.SecondaryFlex{
+    display: flex;
+}
+.SecondaryTitle{
+    padding-top: 4rem;
+padding-left: 10rem;
+    font-size: 1.5rem;
+   width: 55%;
+    font-family: 'Open Sans', sans-serif;
+    font-weight:500;
+    line-height: 2.4rem;
+}
+.SignIn{
+    text-decoration: none;
+    color: #4460F1;
+    font-weight: 700;
+}

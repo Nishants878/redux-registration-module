@@ -1,0 +1,48 @@
+.MainContainer{
+  width: 100%;
+   
+    padding: 0;
+    height: 5rem;
+    font-family: 'Poppins', sans-serif;
+}
+.NavBar{
+    display: flex;
+    
+ margin-left: 13%;
+ margin-right: 13%;
+ padding-top: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+.NavMenuWrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+}
+.IconAndLinkWrapper{
+    display: flex;
+    text-decoration: none;
+    margin-right: 3rem;
+    font-size: 1rem;
+    font-weight: 900;
+    color: #454687;
+}
+.IconAndLinkWrapper:hover{
+    color: #4460F1;
+}
+.OuterBx{
+    width: 50px;
+    height: 20px;
+    background-color: #4460F1;
+}
+.LogoutSegment{
+    display: none;
+}
+.ShowLogout{
+    display: block;
+}
+.NavHidden{
+    display: none;
+}

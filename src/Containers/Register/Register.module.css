@@ -1,0 +1,75 @@
+.MainContainer{
+   
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 3%;
+    padding: 1rem;
+}
+.LeftContainer{
+    width: 65%;
+}
+
+
+
+.RightContainer{
+    width: 45%;
+}
+form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.InputWrapper{
+    width: 100%;
+    margin-top: 1.2rem;
+    margin-left: 2rem;
+}
+.Input {
+    width: 60%;
+    height: 60px;
+
+    outline: none;
+  
+    background: #E9EFF6;
+ 
+    padding-left: 1rem;
+    border: 1px solid #F3F5F5;
+    box-sizing: border-box;
+    margin: 0;
+    border-radius: 10px;
+  }
+  .EyeIcons {
+    position: relative;
+    top: 0%;
+    right: 10%;
+    cursor: pointer;
+    color: #b4b4b4;
+  }
+  .ActivePassword{color:#4460F1}
+  .Btn{
+    width: 60%;
+    height: 60px;
+
+    outline: none;
+  
+    background: #4460F1;
+   font-size: 1.2rem;
+    padding-left: 1rem;
+    border: 1px solid #F3F5F5;
+    box-sizing: border-box;
+    margin: 0;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+  }
+  .BtnContainer{
+    width: 100%;
+    margin-top: 2.2rem;
+    margin-left: 2rem;
+  }
+ img{
+     width: 500px;
+ }
