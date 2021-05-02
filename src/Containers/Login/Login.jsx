@@ -6,8 +6,8 @@ import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom';
 import classes from './Login.module.css'
 import icon from '../../Assest/Icons/Register.svg'
-import {useSelector, useDispatch} from 'react-redux'
-
+import {useSelector,useDispatch } from 'react-redux'
+import { userStatus, userSessionId } from '../../redux/reducer'
 
 
 const eye = <FontAwesomeIcon icon={faEye} />;
@@ -15,11 +15,13 @@ const eye = <FontAwesomeIcon icon={faEye} />;
 
 export default function Login(props) {
     const [passwordShownColor, setPasswordShownColor] = useState("inActive");
+    
     let currentUrl = props.location.pathname;
-    console.log(currentUrl)
-    const userData = useSelector(state => state.user)
-    console.log(userData)
-   const dispatch = useDispatch();
+    
+    const userData = useSelector(state => state.userCredentials)
+     
+    const dispatch = useDispatch();
+  
     const { register, handleSubmit } = useForm(
         // {
         //     resolver:yupResolver(schema),
@@ -28,18 +30,42 @@ export default function Login(props) {
 
     const onSubmit  = (data) =>{
        const inputData = data.email;
-       const inputPass = data.password
-       if(userData.some(item => item.email == inputData && item.password == inputPass)){
-           dispatch({
-               type:"User_Logged",
-               payload:true
+       const inputPass = data.password;
+      const storeCredEmail = userData.find((user) => user.email === inputData);
+      const storeCredPass = userData.find((user) => user.password === inputPass);
+        
+    
+    
 
-           })
-        props.history.push("/dashboard");
-         
-       }else{
-           alert("Kindly enter correct details")
-       }
+     
+      
+      if(storeCredEmail && storeCredPass){
+       
+        var tempObj = userData.filter(obj =>{
+            return obj.email === inputData
+        });
+       const aObj = tempObj[0];
+       console.log(aObj)
+       const identificationId = aObj.id;
+      
+       
+         dispatch(
+            userStatus({
+                isLoggedIn:true
+            })
+          
+         );
+         dispatch(
+             userSessionId({
+                sessionId:identificationId
+             })
+         )
+        
+         props.history.push("/dashboard");
+      
+      }else{
+          alert("Enter correct details")
+      }
     }
 
 

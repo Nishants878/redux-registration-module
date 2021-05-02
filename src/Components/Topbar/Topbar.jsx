@@ -2,29 +2,31 @@ import React, {useState, useEffect} from 'react'
 import classes from './Topbar.module.css'
 import {Link} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
+import { userStatus } from '../../redux/reducer'
+
 export default function Topbar(props) {
      
     
     
     
-    const isLoggedIn = useSelector(state => state.Logged);
+    const isLogged = useSelector(state => state.isLoggedIn.isLoggedIn);
     const [headerSign, setHeaderSign] = useState(false) 
     const dispatch = useDispatch();
     useEffect(()=>{
-       if(isLoggedIn === true){
+       if(isLogged === true){
            setHeaderSign(true)
        }else{
            setHeaderSign(false)
        }
-    },[isLoggedIn])
+    },[isLogged])
       
      const handleLogout = () =>{
         setHeaderSign(false);
-        dispatch({
-            type:"User_Logged",
-            payload:false
-          
-        });
+        dispatch(
+            userStatus({
+                isLoggedIn:false
+            })
+         )
       
     
      }

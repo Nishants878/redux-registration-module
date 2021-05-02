@@ -1,31 +1,48 @@
 import React,{useState,useEffect} from 'react'
 import classes from './MainForm.module.css';
 import temp from '../../Assest/Icons/profile.jpg'
-import { useForm, Controller } from "react-hook-form";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from 'react-redux'
-import {useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { userInfo, userInfoUpdate } from '../../redux/reducer'
 
 
 const uploadIcon = <FontAwesomeIcon icon={faUpload} />;
 export default function MainForm() {
     const dispatch = useDispatch();
-	const userData = useSelector(state => state.UserData);
-      
-	const { register, handleSubmit } = useForm(
-       
-		);
+	const identificationId = useSelector(state => state.sessionId.sessionId);
+	
+	const userData = useSelector(state => state.userData)
 	
 	
-	const [profilePic, setProfilePic] = useState(temp);
+	const [profilePic, setProfilePic] = useState("");
+    const [name, setName] = useState("");
+	const [address, setAddress] = useState("");
+    const [number, setNumber] = useState();
+	const [birthday, setBirthday] = useState("");
 
 
 
+	useEffect(() =>{
+		const storeCred = userData.find((user) => user.uniqueId === identificationId);
+	   console.log(storeCred);
+	   if(storeCred){
+		setProfilePic(storeCred.profilePic)
+		setName(storeCred.name)
+		setAddress(storeCred.address);
+		setNumber(storeCred.number);
+		setBirthday(storeCred.birthday)
+	   }
+		
+	},[])
 
-     
-    
+
+	const handleName = (e) => setName(e.target.value);
+	const handleAddress = (e) => setAddress(e.target.value);
+	const handleNumber = (e) => setNumber(e.target.value);
+	const handleBirthday = (e) => setBirthday(e.target.value);
   
      const profileChange = (e) =>{
 		 e.preventDefault();
@@ -33,15 +50,21 @@ export default function MainForm() {
 	 
 	};
 
-	const onSubmit  = (data) =>{
-	
-        dispatch({
-            type:"User_Form",
-            payload:data
-        });
-        alert("profile submitted")
-      
-    }
+	const handleSubmit = (e) =>{
+         e.preventDefault();
+		 dispatch(
+			userInfo({
+				name:name,
+				address:address,
+				number:number,
+				birthday:birthday,
+				profilePic:profilePic,
+				uniqueId:identificationId
+			})
+		 );
+		
+	}
+
    
 
     
@@ -49,19 +72,19 @@ export default function MainForm() {
 
     return (
         <div className={classes.MainContainer}>
-          <form onSubmit={handleSubmit(onSubmit)}  className={classes.MainForm} autoComplete="on">
+          <form  className={classes.MainForm} autoComplete="on">
             <div className={classes.ImageWrapper}>
                <img src={profilePic} alt="profile"/>
 			   <div className={classes.UploadIconWrapper}>
 				   <label className={classes.LabelForInput}>
 				   <input 
 				    name="image" 
-					{...register("image")}
+					
 					 onChange={profileChange} 
 					 className={classes.UploadInput} 
 					 type="file" 
 					 accept="image/*"
-					 required
+					 required 
 					 />
 				   <i   className={classes.UploadIcon}>{uploadIcon}</i>
 			  
@@ -77,7 +100,8 @@ export default function MainForm() {
                                             name="name"
                                             type="text"
                                             placeholder="Name"
-                                            {...register("name")}
+											onChange={handleName}
+											value={name}
                                             required 
 											
                                         />
@@ -87,8 +111,8 @@ export default function MainForm() {
                                             className={[classes.Input, classes.Date].join(' ')}
                                             name="birthday"
                                             type="date"
-											{...register("birthday")}
-										
+											onChange={handleBirthday}
+											value={birthday}
                                         />
                                         
             </div>
@@ -314,7 +338,8 @@ export default function MainForm() {
 	</optgroup>
 </select>
 <input className={classes.NumberInput} type="tel"  name="phone"
-        {...register("phone")}
+        onChange={handleNumber}
+		value={number}
        placeholder="Enter Your Number" 
 	    
        required />
@@ -325,13 +350,14 @@ export default function MainForm() {
                                             name="address"
                                             type="text"
                                             placeholder="Address"
-											{...register("address")}
+											onChange={handleAddress}
+											value={address}
                                             required 
 										
                                         />
             </div>
 			<div className={classes.BtnContainer}>
-			<button className={classes.Btn} type="submit">Submit</button>
+			<button onClick={handleSubmit} className={classes.Btn} type="submit">Submit</button>
 			</div>
           </form>
         </div>

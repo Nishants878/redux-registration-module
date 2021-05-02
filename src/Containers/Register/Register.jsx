@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom';
 import icon from '../../Assest/Icons/Register.svg'
 import { useDispatch } from 'react-redux'
+import { userCred } from '../../redux/reducer';
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 
@@ -37,10 +38,13 @@ export default function Register(props) {
     );
 
     const onSubmit  = (data) =>{
-        dispatch({
-            type:"User_Info",
-            payload:data
-        });
+     dispatch(
+        userCred({
+            id:Date.now(),
+            email:data.email,
+            password:data.password
+        })
+     )
         alert("You are registered");
         props.history.push("/login")
     }
