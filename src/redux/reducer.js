@@ -10,7 +10,8 @@ const usersContainer = createSlice({
         userCredentials:[],
         userData:[],
         isLoggedIn:false,
-        sessionId:""
+        sessionId:"",
+       
     },
     reducers:{
         userCred: (state, action) =>{
@@ -26,15 +27,17 @@ const usersContainer = createSlice({
             state.sessionId = action.payload 
           },
           userInfoUpdate: (state, action) =>{
-              const { name, address, number, birthday, profilePic, uniqueId } = action.payload;
-              const existingUser = state.userData.find((user) => user.uniqueId === uniqueId);
-              if(existingUser){
-                  existingUser.name = name;
-                  existingUser.address = address;
-                  existingUser.number = number;
-                  existingUser.profilePic = profilePic;
-                  existingUser.birthday = birthday
-              }
+           
+            let identificationId = action.payload.uniqueId;
+            let existingUser = state.userData.find((user) => user.uniqueId === identificationId)
+            if(existingUser){
+                existingUser.name = action.payload.name;
+                existingUser.address = action.payload.address;
+                existingUser.number = action.payload.number;
+                existingUser.birthday = action.payload.birthday;
+                existingUser.profilePic = action.payload.profilePic;
+            }
+           
           }
     }
 

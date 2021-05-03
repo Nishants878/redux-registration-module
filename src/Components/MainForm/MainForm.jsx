@@ -62,7 +62,18 @@ export default function MainForm() {
 				uniqueId:identificationId
 			})
 		 );
-		
+
+		 dispatch(
+			 userInfoUpdate({
+				uniqueId:identificationId,
+				name:name,
+				address:address,
+				number:number,
+				birthday:birthday,
+				profilePic:profilePic,
+			 })
+		 )
+		alert("Form submitted")
 	}
 
    
